@@ -1,0 +1,63 @@
+#include "main.h"
+/**
+  * print_hex - convert decimal number to hexadecimal
+  * @ap: argument parameter
+  * Return: pointer to string with hexadecimal
+  */
+
+char *print_hex(va_list ap)
+{
+	int d, t, c;
+	unsigned int n;
+	char *ptr;
+
+	n = va_arg(ap, unsigned int);
+
+	t = 0;
+	ptr = (char *)malloc(sizeof(char) * (12));
+
+	if (ptr == NULL)
+		exit(EXIT_FAILURE);
+
+	for (c = 8; c >= 0; c--)
+	{
+		d = n / pow_num(16, c);
+
+		if (d & 15)
+			*(ptr + t) = 'f' + '0';
+		else if (d & 14)
+			*(ptr + t) = 'e' + '0';
+		else if (d & 13)
+			*(ptr + t) = 'd' + '0';
+		else if (d & 12)
+			*(ptr + t) = 'c' + '0';
+		else if (d & 11)
+			*(ptr + t) = 'b' + '0';
+		else if (d & 10)
+			*(ptr + t) = 'a' + '0';
+		else if (d & 9)
+			*(ptr + t) = 9 + '0';
+		else if (d & 8)
+			*(ptr + t) = 8 + '0';
+		else if (d & 7)
+			*(ptr + t) = 7 + '0';
+		else if (d & 6)
+			*(ptr + t) = 6 + '0';
+		else if (d & 5)
+			*(ptr + t) = 5 + '0';
+		else if (d & 4)
+			*(ptr + t) = 4 + '0';
+		else if (d & 3)
+			*(ptr + t) = 3 + '0';
+		else if (d & 2)
+			*(ptr + t) = 2 + '0';
+		else if (d & 1)
+			*(ptr + t) = 1 + '0';
+		else
+			*(ptr + t) = 0 + '0';
+		t++;
+	}
+	*(ptr + t) = '\0';
+
+	return  (ptr);
+}
